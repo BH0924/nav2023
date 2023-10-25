@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- 此文件单独测试rrt路径规划使用 -->
+<launch>
+
+  <!-- 启动地图 -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(find global_planner)/maps/map.yaml"/>
+
+  <!-- 启动map->odom静态TF发布 -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 1 map base_link 100" /> -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 1 map base_footprint 100" /> -->
+
+  <!--启动A*全局规划器-->
+  <node pkg="global_planner" type="planner" respawn="true" name="global_planner" output="screen">
+    <!-- <rosparam file="$(find global_planner)/params/A_star_planner.yaml" command="load" /> -->
+    <rosparam file="$(find global_planner)/params/A_star_planner.yaml" command="load"/>
+  </node>
+
+  <node pkg="global_planner" type="publisher_goal" respawn="true" name="publisher_goal" output="screen"></node>
+
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find global_planner)/params/rviz.rviz" required="false" /> -->
+
+</launch>
