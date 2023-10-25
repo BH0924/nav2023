@@ -1,2 +1,2 @@
-# RM_sentry_nav
-RoboMaster2023哨兵导航算法
+# sentry_nav
+导航算法
